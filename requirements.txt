@@ -1,5 +1,22 @@
-streamlit
-pandas
-numpy
-pycaret
-shap
+# Core
+streamlit==1.25.0
+pandas==2.2.0
+numpy==1.26.0
+
+# PyCaret for ML (Regression)
+pycaret[full]==3.0.1
+
+# SHAP for model explanations
+shap==0.42.1
+
+# Visualization & Rich formatting
+matplotlib==3.8.1
+seaborn==0.12.2
+plotly==6.2.2
+rich==14.1.0
+markdown-it-py==4.0.0
+mdurl==0.1.2
+pygments==2.19.2
+
+# Optional: for caching and performance
+joblib==1.3.2
