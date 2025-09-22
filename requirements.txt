@@ -1,22 +1,23 @@
-# Core framework
+# Streamlit for web app
 streamlit==1.28.0
 
-# Data handling
+# Core data handling
 pandas==2.2.0
-numpy==1.26.0
+numpy==1.26.5
 
-# Machine Learning & AutoML
-pycaret[full]==3.0.1
-shap==0.42.1
-joblib==1.3.2
+# Machine Learning
+pycaret==3.0.0
+
+# Explainable AI
+shap==0.46.0
 
 # Visualization
 matplotlib==3.8.1
 seaborn==0.12.2
-plotly==6.2.2
+plotly==6.3.0
 
-# Markdown and rich text rendering
-rich==14.1.0
-markdown-it-py==4.0.0
-mdurl==0.1.2
-pygments==2.19.2
+# Rich for better terminal output (compatible with Streamlit 1.28)
+rich>=10.14.0,<15
+
+# Optional: For smoother UI components
+altair==5.0.1
