@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd # type: ignore
 import numpy as np # type: ignore
 
-# Try to import PyCaret with error handling
+# Importing PyCaret with error handling
 try:
     from pycaret.datasets import get_data
     from pycaret.regression import load_model, predict_model
@@ -11,7 +11,7 @@ except ImportError as e:
     st.error(f"PyCaret import error: {e}")
     PYCARET_AVAILABLE = False
 
-# Try to import SHAP with error handling
+# Importing SHAP with error handling
 try:
     import shap # type: ignore
     SHAP_AVAILABLE = True
@@ -126,7 +126,7 @@ st.markdown("""
         letter-spacing: 0.5px;
     }
     
-    /* Sidebar styling */
+       /* Sidebar styling */
     .css-1d391kg {
         background: var(--glass-background);
         backdrop-filter: blur(20px);
@@ -134,8 +134,9 @@ st.markdown("""
     }
     
     section[data-testid="stSidebar"] * {
-        color: var(--text-light) !important;
+        color: var(--text-dark-navy) !important;
     }
+
 
     /* Target the actual scrollable sidebar container */
 [data-testid="stSidebar"] > div:first-child {
@@ -166,7 +167,7 @@ st.markdown("""
 
     /* Sidebar text */
     .css-1d391kg * {
-        color: var(--text-light) !important;
+        color: var(--text-ligt) !important;
     }
     
     .css-1d391kg h1, .css-1d391kg h2, .css-1d391kg h3 {
@@ -202,7 +203,7 @@ st.markdown("""
         background: var(--glass-background) !important;
         border: 1px solid var(--border-color) !important;
         border-radius: 12px;
-        color: var(--text-light) !important;
+        color: var(--text-dark-navy) !important;
         backdrop-filter: blur(10px);
         font-family: 'Inter', sans-serif;
         transition: all 0.3s ease;
@@ -219,7 +220,7 @@ st.markdown("""
     .stNumberInput label,
     .stSelectbox label,
     .stRadio label {
-        color: var(--text-light) !important;
+        color: var(--text-dark-navy) !important;
         font-weight: 500;
         font-size: 1rem;
         margin-bottom: 0.5rem;
@@ -227,7 +228,7 @@ st.markdown("""
     
     /* Radio buttons */
     .stRadio > div > div > div > label {
-        color: var(--text-light) !important;
+        color: var(--text-dark-navy) !important;
     }
     
     /* Selectbox options */
@@ -576,30 +577,21 @@ with st.sidebar:
     st.markdown('<h2 class="section-header">👤 Personal Information</h2>', unsafe_allow_html=True)
     st.markdown("**Tell us about yourself and we'll calculate your insurance charge**")
     
-    # Personal details
-    age = st.number_input("🎂 Age", min_value=18, max_value=100, value=30, help="Your current age")
-    sex = st.radio("⚥ Gender", ['male', 'female'], help="Your gender")
+    age = st.number_input("🎂 Age", min_value=18, max_value=100, value=30)
+    sex = st.radio("⚥ Gender", ['male', 'female'])
     
-    # Physical measurements
-    st.markdown('<h3 style="color: rgba(255, 255, 255, 0.9); margin-top: 2rem;">📏 Physical Details</h3>', unsafe_allow_html=True)
-    height = st.number_input("📐 Height (cm)", min_value=100, max_value=250, value=170, help="Your height in centimeters")
-    weight = st.number_input("⚖️ Weight (kg)", min_value=30, max_value=200, value=70, help="Your weight in kilograms")
+    st.markdown('<h3 style="color:#001f3f; margin-top:2rem;">📏 Physical Details</h3>', unsafe_allow_html=True)
+    height = st.number_input("📐 Height (cm)", min_value=100, max_value=250, value=170)
+    weight = st.number_input("⚖️ Weight (kg)", min_value=30, max_value=200, value=70)
     
-    # Calculate and display BMI
     bmi = round(weight / ((height / 100) ** 2), 1)
-    st.markdown(f"""
-        <div class="bmi-display">
-            <h3>BMI: {bmi}</h3>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown(f"<div class='bmi-display'><h3>BMI: {bmi}</h3></div>", unsafe_allow_html=True)
     
-    # Lifestyle factors
-    st.markdown('<h3 style="color: rgba(255, 255, 255, 0.9); margin-top: 2rem;">👨‍👩‍👧‍👦 Family & Lifestyle</h3>', unsafe_allow_html=True)
-    children = st.selectbox("👶 Number of children", ['0', '1', '2', '3', '4', '5', '6', '7+'], help="Number of dependents")
-    smoker = st.radio("🚭 Smoking status", ['no', 'yes'], help="Do you smoke?")
-    region = st.selectbox("🗺️ Region", ['southeast', 'southwest', 'northeast', 'northwest'], help="Your residential region")
+    st.markdown('<h3 style="color:#001f3f; margin-top:2rem;">👨‍👩‍👧‍👦 Family & Lifestyle</h3>', unsafe_allow_html=True)
+    children = st.selectbox("👶 Number of children", ['0', '1', '2', '3', '4', '5', '6', '7+'])
+    smoker = st.radio("🚭 Smoking status", ['no', 'yes'])
+    region = st.selectbox("🗺️ Region", ['southeast', 'southwest', 'northeast', 'northwest'])
     
-    # Create person dataframe
     person_df = pd.DataFrame([{
         'age': age,
         'sex': sex,
@@ -613,17 +605,7 @@ with st.sidebar:
     
     st.markdown('<h3 class="section-header">📋 Your Data Summary</h3>', unsafe_allow_html=True)
     st.dataframe(person_df, hide_index=True, use_container_width=True)
-    
-    # Add controls in sidebar
-    st.markdown('<div style="margin-top: 2rem;">', unsafe_allow_html=True)
-    col1, col2 = st.columns(2)
-    with col1:
-        if st.button("🔄 Update", key="sidebar_rerun", help="Recalculate with new values", use_container_width=True):
-            st.rerun()
-    with col2:
-        if st.button("📊 Analyze", key="analyze_button", help="Get detailed analysis", use_container_width=True):
-            st.success("Analysis updated!")
-    st.markdown('</div>', unsafe_allow_html=True)
+
 
 # -------------------- MAIN CONTENT --------------------
 # Load model and data
