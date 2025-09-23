@@ -1,23 +1,14 @@
-# Streamlit for web app
-streamlit==1.28.0
-
-# Core data handling
-pandas==2.2.0
-numpy==1.26.5
-
-# Machine Learning
-pycaret==3.0.0
-
-# Explainable AI
-shap==0.46.0
-
-# Visualization
-matplotlib==3.8.1
-seaborn==0.12.2
-plotly==6.3.0
-
-# Rich for better terminal output (compatible with Streamlit 1.28)
-rich>=10.14.0,<15
-
-# Optional: For smoother UI components
-altair==5.0.1
+numpy>=1.24,<1.27
+pandas>=2.2,<2.4
+scipy>=1.11,<1.12
+scikit-learn>=1.6.0,<1.9
+xgboost>=1.7,<1.8
+lightgbm>=4.5,<5.0
+category_encoders>=2.8.0,<2.9
+pycaret[full]>=3.1,<3.2
+matplotlib>=3.8,<3.9
+seaborn>=0.12,<0.13
+plotly>=6.3,<6.4
+streamlit>=1.28,<1.30
+joblib>=1.3,<1.5
+shap>=0.42,<0.43
