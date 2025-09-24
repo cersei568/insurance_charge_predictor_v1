@@ -199,7 +199,8 @@ st.markdown("""
     .stNumberInput > div > div > input,
     .stTextInput > div > div > input,
     .stSelectbox > div > div > div,
-    .stRadio > div > div > div {
+    .st
+     > div > div > div {
         background: var(--glass-background) !important;
         border: 1px solid var(--border-color) !important;
         border-radius: 12px;
